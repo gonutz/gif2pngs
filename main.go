@@ -41,9 +41,12 @@ func main() {
 	dir, file := filepath.Split(path)
 	file = strings.TrimSuffix(file, ".gif")
 	base := filepath.Join(dir, file)
+	if len(img.Image) == 0 {
+		return
+	}
+	dest := image.NewRGBA(img.Image[0].Bounds())
 	for i, img := range img.Image {
-		dest := image.NewRGBA(img.Bounds())
-		draw.Draw(dest, img.Bounds(), img, img.Bounds().Min, draw.Src)
+		draw.Draw(dest, img.Bounds(), img, img.Bounds().Min, draw.Over)
 		var w bytes.Buffer
 		err := png.Encode(&w, dest)
 		if err != nil {
