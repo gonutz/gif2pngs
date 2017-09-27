@@ -24,7 +24,7 @@ func main() {
 	}
 	path := os.Args[1]
 	if !strings.HasSuffix(path, ".gif") {
-		fmt.Println("The give file must be a .gif file")
+		fmt.Println("The input file must be a .gif file")
 		return
 	}
 	data, err := ioutil.ReadFile(path)
